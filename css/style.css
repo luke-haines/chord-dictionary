@@ -1,4 +1,8 @@
-h1 {
-    color: navy;
-    font-size: 20pt;
+select, label {
+    display: block;
+}
+
+div.option-wrapper {
+    float:left;
+    margin-right:20px;
 }
