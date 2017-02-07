@@ -1,6 +1,6 @@
 <dictionary>
     <div id="content">
-        <img src={img_path} id="fingering"><br/>
+        <img src={img_path} id="chord-image"><br/>
         <div class="option-wrapper">
             <label for="chord-root">Root</label>
             <select id="chord-root" name="chord-option">
@@ -20,7 +20,7 @@
         <div class="option-wrapper">
             <label for="chord-fingering">Fingering</label>
             <select id="chord-fingering" name="chord-option">
-                <option each={option in chord_fingerings} value={option.value} selected={current==option.value}>
+                <option each={option in chord_fingerings} value={option.value} selected={fingering==option.value}>
                     {option.title}
                 </option>
             </select>
@@ -57,6 +57,8 @@
             {value: '6', title: '6th Fingering'}
         ];
 
+        _this.fingering = 1;
+
         // When initialized, the first png to display
         _this.img_path = 'images/c-major-01.png';
 
@@ -65,10 +67,10 @@
 
                 var root = $("#chord-root").val();
                 var variant = $("#chord-variant").val();
-                var fingering = $("#chord-fingering").val();
+                _this.fingering = $("#chord-fingering").val();
 
                 _this.chord_fingerings = buildFingeringOptions(getFingeringCount(root, variant));
-                _this.img_path = 'images/' + getImageName(root, variant, fingering);
+                _this.img_path = 'images/' + getImageName(root, variant, _this.fingering);
                 _this.update();
             });
         });
